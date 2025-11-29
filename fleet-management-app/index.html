@@ -1,92 +1,158 @@
 <!doctype html>
-<html>
-    <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Fleet Management- Login</title>
-    <style>
-        html,body{
-            height:100%;
-            margin:0;
-            font-family:Arial, Helvetica, sans-serif;
-            background-color: antiquewhite;
-        }
-        .wrap{
-            min-height:auto;
-            display: flex;
-            align-items: center;
-
-        }
-        .card{
-          width:100%;
-          border-radius: 12px;
-          padding:28px;
-          border: 1px solid;  
-        }
-        label{
-            display:block;
-            font-size:13px;
-            color:aliceblue;
-        }
-        .row {
-            display: flex;
-            align-items:center;
-            font-size: 13px;
-
-        }
-        .btn{
-            display: inline-block;
-            padding:14px;
-            border-radius: 10px;
-        }
-    </style>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fleet Management - Login</title>
+  <style>
+    /* Minimal, clean styling */
+    :root {
+      --bg: #f7f7f9;
+      --card: #ffffff;
+      --accent: #2b7cff;
+      --muted: #6b7280;
+    }
+    html,body {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg), #eef2ff 100%);
+      color: #111827;
+    }
+    .wrap {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.06);
+      padding: 28px;
+      box-sizing: border-box;
+      border: 1px solid #e6e9ef;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+    p.lead {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      box-sizing: border-box;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .btn:active { transform: translateY(1px); }
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
-    <div class="wrap">
-        <main class="card" role="main">
-        <h1 >Admin Login</h1>
-        <p>Enter crendiatials to access the admin dashboard.</p>
-        <form id="loginForm" autocomplete="on">
-            <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="u@example.com" required/>
-            </div>
-            <div>
-                 <label for="password">Email</label>
-                <input id="password" name="password" type="password" placeholder="password" required/>
-            </div>
-           
-                <button type="submit" class="btn">Login</button>
-            
-            
-        </form>  
-        </main> 
-     </div>
-     <script>
-        (function(){
-            const validemail="admin@gmail.com";
-            const validpassword="admin1234";
-            const form=document.getElementById("loginForm");
-            const emailinput=document.getElementById("email");
-            const passinput=document.getElementById("password")
-            form.addEventListener("submit",function(e){
-                e.preventDefault();
-                const email=(emailinput.value|| "").trim();
-                const password=(passinput.value||"").trim();
-                if (email===validemail && password=validpassword){
-                    alert("Login successful");
-                    window.location.href="admin.html";
-                }
-                else{
-                    alert("Wrong credentials");
-                    if (email!==validemail){
-                        emailinput.focus();
-                    }
-                    else{
-                        passinput.focus();
-                    }
-                }
-            });
-        })();
-     </script>
+  <div class="wrap">
+    <main class="card" role="main" aria-labelledby="loginTitle">
+      <h1 id="loginTitle">Admin Login</h1>
+      <p class="lead">Enter credentials to access the admin dashboard.</p>
+
+      <form id="loginForm" autocomplete="on" novalidate>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="password" required />
+        </div>
+
+        <div class="row">
+          <span class="small">Valid: admin@gmail.com / admin1234</span>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+
+      <p class="footer-note">Keep the layout minimal. Focus is on functionality.</p>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const VALID_EMAIL = "admin@gmail.com";
+      const VALID_PASSWORD = "admin1234";
+
+      const form = document.getElementById("loginForm");
+      const emailInput = document.getElementById("email");
+      const passInput = document.getElementById("password");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent actual form submission
+
+        const email = (emailInput.value || "").trim();
+        const password = (passInput.value || "").trim();
+
+        if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+          alert("Login success");
+          // redirect to admin.html
+          window.location.href = "admin.html";
+        } else {
+          alert("Wrong email or password");
+          // optional: focus wrong field
+          if (email !== VALID_EMAIL) {
+            emailInput.focus();
+          } else {
+            passInput.focus();
+          }
+        }
+      });
+
+      // allow pressing Enter in either field to submit (form handles it)
+    })();
+  </script>
 </body>
 </html>
