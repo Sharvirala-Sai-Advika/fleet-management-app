@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Fleet Management- Login</title>
+    <style>
+        html,body{
+            height:100%;
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background-color: antiquewhite;
+        }
+        .wrap{
+            min-height:auto;
+            display: flex;
+            align-items: center;
+
+        }
+        .card{
+          width:100%;
+          border-radius: 12px;
+          padding:28px;
+          border: 1px solid;  
+        }
+        label{
+            display:block;
+            font-size:13px;
+            color:aliceblue;
+        }
+        .row {
+            display: flex;
+            align-items:center;
+            font-size: 13px;
+
+        }
+        .btn{
+            display: inline-block;
+            padding:14px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <main class="card" role="main">
+        <h1 >Admin Login</h1>
+        <p>Enter crendiatials to access the admin dashboard.</p>
+        <form id="loginForm" autocomplete="on">
+            <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="u@example.com" required/>
+            </div>
+            <div>
+                 <label for="password">Email</label>
+                <input id="password" name="password" type="password" placeholder="password" required/>
+            </div>
+           
+                <button type="submit" class="btn">Login</button>
+            
+            
+        </form>  
+        </main> 
+     </div>
+     <script>
+        (function(){
+            const validemail="admin@gmail.com";
+            const validpassword="admin1234";
+            const form=document.getElementById("loginForm");
+            const emailinput=document.getElementById("email");
+            const passinput=document.getElementById("password")
+            form.addEventListener("submit",function(e){
+                e.preventDefault();
+                const email=(emailinput.value|| "").trim();
+                const password=(passinput.value||"").trim();
+                if (email===validemail && password=validpassword){
+                    alert("Login successful");
+                    window.location.href="admin.html";
+                }
+                else{
+                    alert("Wrong credentials");
+                    if (email!==validemail){
+                        emailinput.focus();
+                    }
+                    else{
+                        passinput.focus();
+                    }
+                }
+            });
+        })();
+     </script>
+</body>
+</html>
